@@ -11,3 +11,4 @@ class DoidownloaderItem(scrapy.Item):
     # name = scrapy.Field()
     content = scrapy.Field()
     type = scrapy.Field()
+    paper_id = scrapy.Field()

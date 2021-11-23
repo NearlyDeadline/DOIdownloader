@@ -26,9 +26,10 @@ class DoiSpider(scrapy.Spider):
     def parse(self, response):
         for doi_url, doi_value in self.doi_data:
             yield Request(url=doi_url, callback=self.item_download, headers=self.default_request_headers
-                          , dont_filter=True, meta={doi_value['type']})
+                          , dont_filter=True, meta={'type': doi_value['type'], 'paper_id': doi_value['paper_id']})
 
     def item_download(self, response):
         item = DoidownloaderItem()
         item['content'] = response.text
         item['type'] = response.meta['type']
+        item['paper_id'] = response.meta['paper_id']
